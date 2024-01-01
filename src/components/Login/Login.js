@@ -8,8 +8,8 @@ import {
 } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 import { useDispatch } from "react-redux";
-import { addUser } from "../../utils/userSlice";
-import { BACKGROUND_IMAGE } from "../../utils/constants";
+import { addUser } from "../../utils/appStore/userSlice";
+import { BACKGROUND_IMAGE } from "../../utils/constants/constants";
 
 const Login = () => {
   const dispatch = useDispatch();
