@@ -1,15 +1,18 @@
 export const LOGO =
   "https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png";
 // export const LOGO = "";
+
 export const BACKGROUND_IMAGE =
-  "https://assets.nflxext.com/ffe/siteui/vlv3/dace47b4-a5cb-4368-80fe-c26f3e77d540/f5b52435-458f-498f-9d1d-ccd4f1af9913/IN-en-20231023-popsignuptwoweeks-perspective_alpha_website_large.jpg";
+"https://assets.nflxext.com/ffe/siteui/vlv3/dace47b4-a5cb-4368-80fe-c26f3e77d540/f5b52435-458f-498f-9d1d-ccd4f1af9913/IN-en-20231023-popsignuptwoweeks-perspective_alpha_website_large.jpg";
+
+// export const BACKGROUND_IMAGE = "";
 
 export const API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzEwOTFhZDI1ZTdlY2VlNDMxYTc2OTI5MjBmOTc0MyIsInN1YiI6IjY1OGQ1YWQxMmFmYjI1NWYxZDBjYmZlNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.1Ix-nh91TgQxW8qYPdcEdHaGCTEvvxDgHspFzBsCsN4",
+      "Bearer " + process.env.REACT_APP_TMBD_TOKEN,
   },
 };
 
@@ -18,5 +21,7 @@ export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
 export const LANGUAGE_OPTIONS = [
   { value: "English", key: "en" },
   { value: "Hindi", key: "hindi" },
-  { value: "Spanish", key: "spanish" }
+  { value: "Spanish", key: "spanish" },
 ];
+
+export const GPT_KEY = process.env.REACT_APP_GPT_KEY

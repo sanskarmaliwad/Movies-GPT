@@ -56,7 +56,7 @@ const Header = () => {
               onChange={handleLanguage}
             >
               {LANGUAGE_OPTIONS.map((lang) => (
-                <option value={lang.key}>{lang.value}</option>
+                <option key = {lang.key} value={lang.key}>{lang.value}</option>
               ))}
             </select>
           )}

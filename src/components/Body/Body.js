@@ -1,6 +1,8 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Login from "../Login/Login";
 import Browse from "../Browse/Browse";
+import Loader from "../Loader/Loader";
+
 
 
 
@@ -14,7 +16,7 @@ const Body = () => {
     {
       path: "/browse",
       element: <Browse />,
-    },
+    }
   ]);
 
   return (

@@ -7,19 +7,20 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../../utils/firebase";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../utils/appStore/userSlice";
 import { BACKGROUND_IMAGE } from "../../utils/constants/constants";
 
 const Login = () => {
   const dispatch = useDispatch();
-
   const [isSignIn, SetIsSignIn] = useState(true);
   const [errorMessages, setErrorMessages] = useState({});
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState(null);
+
+  // const showLoader = useSelector((store) => store.config.showLoader);
 
   // Toggle between sign in and sign up form
   const handleSwitchButton = () => {
@@ -30,10 +31,9 @@ const Login = () => {
   };
 
   // handle validation of form feildss
-  const handleButtonClick = () => { 
-    const errors = validate(email, password, fullName);
 
-    setErrorMessages(errors);
+  const handleButtonClick = () => {
+    const errors = validate(email, password, fullName);
 
     //If errors exists
     if (Object.keys(errors).length != 0) return;
@@ -53,7 +53,6 @@ const Login = () => {
               dispatch(
                 addUser({ uid: uid, email: email, displayName: displayName })
               );
-              // navigate("/browse");
             })
             .catch((error) => {
               const errorCode = error.code;
@@ -91,10 +90,7 @@ const Login = () => {
       <Header />
       {/* background-image  */}
       <div className="absolute">
-        <img
-          src={BACKGROUND_IMAGE}
-          alt="background-img"
-        />
+        <img src={BACKGROUND_IMAGE} alt="background-img" />
       </div>
       {/* Login form */}
       <form className="absolute p-6 pb-28 bg-black text-white w-3/12 my-36 mx-auto left-0 right-0 flex flex-wrap flex-col bg-opacity-80 rounded-lg">
