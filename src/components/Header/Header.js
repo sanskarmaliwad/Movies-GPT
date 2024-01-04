@@ -41,7 +41,7 @@ const Header = () => {
       } else {
         // console.log("User logged out");
         dispatch(removeUser());
-        navigate("/");
+        navigate("/Movies-GPT");
       }
     });
   }, []);

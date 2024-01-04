@@ -10,7 +10,7 @@ const Body = () => {
 
   const appRouter = createBrowserRouter([
     {
-      path: "/",
+      path: "/Movies-GPT",
       element: <Login />,
     },
     {
