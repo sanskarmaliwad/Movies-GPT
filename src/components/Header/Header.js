@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser, removeUser } from "../../utils/appStore/userSlice";
-import { LANGUAGE_OPTIONS, LOGO } from "../../utils/constants/constants";
+import { LANGUAGE_OPTIONS } from "../../utils/constants/constants";
 import { toggleGPTSearch } from "../../utils/appStore/gptSlice";
 import { setLanguage } from "../../utils/appStore/configSlice";
+import LOGO from "../../Images/LOGO.png"
 
 const Header = () => {
   const navigate = useNavigate();
@@ -46,10 +47,10 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="absolute w-screen px-5 py-1 bg-gradient-to-b from-black z-10 flex justify-between">
-      <img className="w-44" src={LOGO} alt="logo" />
+    <div className="absolute w-screen px-5 py-1 bg-gradient-to-b from-black z-10 flex flex-col mx-auto justify-between md:flex-row">
+      <img className="mx-auto w-41 h-16 md:mx-0" src={LOGO} alt="logo" />
       {user && (
-        <div className="flex mt-auto mb-auto mr-4 text-white align-middle">
+        <div className="flex place-content-center mt-auto mb-auto mr-4 text-white align-middle">
           {showGPTSearch && (
             <select
               className="px-3 py-1.5 rounded-md w-32 bg-gray-700"

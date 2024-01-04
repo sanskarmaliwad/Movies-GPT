@@ -4,7 +4,7 @@ import { IMG_CDN_URL } from '../../utils/constants/constants'
 const MovieCard = ({movie}) => {
   if(!movie?.poster_path) return ;
   return (
-    <div className="w-52 pr-5">
+    <div className="w-36 md:w-52 pr-5">
         <img src={IMG_CDN_URL + movie?.poster_path}></img>
     </div>
   )

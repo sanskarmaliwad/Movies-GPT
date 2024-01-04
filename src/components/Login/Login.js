@@ -10,6 +10,8 @@ import { auth } from "../../utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../utils/appStore/userSlice";
 import { BACKGROUND_IMAGE } from "../../utils/constants/constants";
+import { setShowLoader } from "../../utils/appStore/configSlice";
+import Loader from "../Loader/Loader";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -20,7 +22,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState(null);
 
-  // const showLoader = useSelector((store) => store.config.showLoader);
+  const showLoader = useSelector((store) => store.config.showLoader);
 
   // Toggle between sign in and sign up form
   const handleSwitchButton = () => {
@@ -34,10 +36,12 @@ const Login = () => {
 
   const handleButtonClick = () => {
     const errors = validate(email, password, fullName);
+    setErrorMessages(errors);
 
     //If errors exists
     if (Object.keys(errors).length != 0) return;
 
+    dispatch(setShowLoader());
     //sign in and sign up flow
     if (!isSignIn) {
       //Sign Up Logic
@@ -53,6 +57,7 @@ const Login = () => {
               dispatch(
                 addUser({ uid: uid, email: email, displayName: displayName })
               );
+              dispatch(setShowLoader());
             })
             .catch((error) => {
               const errorCode = error.code;
@@ -60,6 +65,7 @@ const Login = () => {
               setErrorMessages({
                 firebaseError: errorMessage,
               });
+              dispatch(setShowLoader());
             });
         })
         .catch((error) => {
@@ -68,12 +74,14 @@ const Login = () => {
           setErrorMessages({
             firebaseError: errorMessage,
           });
+          dispatch(setShowLoader());
         });
     } else {
       //Sign In Logic
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
+          dispatch(setShowLoader());
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -81,6 +89,7 @@ const Login = () => {
           setErrorMessages({
             firebaseError: "Incorrect email or password. Please try again!",
           });
+          dispatch(setShowLoader());
         });
     }
   };
@@ -88,6 +97,7 @@ const Login = () => {
   return (
     <div>
       <Header />
+      {showLoader && <Loader />}
       {/* background-image  */}
       <div className="absolute">
         <img src={BACKGROUND_IMAGE} alt="background-img" />

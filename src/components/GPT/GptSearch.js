@@ -3,16 +3,17 @@ import GptSearchBar from "./GptSearchBar";
 import GptSuggestion from "./GptSuggestion";
 import { BACKGROUND_IMAGE } from "../../utils/constants/constants";
 
-
 const GptSearch = () => {
   return (
-    <div>
+    <>
       <div className="fixed -z-10">
-        <img src={BACKGROUND_IMAGE} alt="background-img" />
+        <img className="h-screen object-cover" src={BACKGROUND_IMAGE} alt="background-img" />
       </div>
-      <GptSearchBar />
-      <GptSuggestion />
-    </div>
+      <div className="">
+        <GptSearchBar />
+        <GptSuggestion />
+      </div>
+    </>
   );
 };
 
